@@ -7,11 +7,42 @@ import {
 
 import styled, { css } from 'styled-components';
 
-import environment from '../Environment'
-
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
+const Container = styled.div`
+max-width: 1350px;
+margin-left: auto;
+margin-right: auto;
+padding: 1rem;
+
+@media (min-width: 769px) {
+  padding: 2rem;
+}
+`;
+
+const HeadingLarge = styled.div`
+  font-size: 1.75rem;
+  padding: 2rem;
+
+  @media (min-width: 769px) {
+    &:before {
+      display: block;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 4px;
+      background-color: #e40000;
+      content: '';
+      margin-bottom: 1.5rem;
+    }
+  }
+`;
+
+const SubHeading = styled.div`
+  font-size: 1.25rem;
+  padding: 2rem 2rem 0;
+`;
 
 const Heading = styled.div`
   font-size: 1.5rem;
@@ -21,6 +52,8 @@ const Heading = styled.div`
 
 const Body = styled.div`
   display: block;
+  padding: 2rem;
+  line-height: 1.5;
 `;
 
 const Card = styled.div`
@@ -30,7 +63,11 @@ const Card = styled.div`
 `;
 
 const Item = styled.div`
-  padding: 1.5rem;
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+  }
+
   a {
     color: inherit;
   }
@@ -42,21 +79,95 @@ const Item = styled.div`
   `}
 `;
 
+const Column = styled.div`
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+  }
+
+  @media (min-width: 769px) {
+    padding: 0.75rem;
+  }
+`
+
+const ThreeQuarter = styled(Column)`
+@media (min-width: 769px) {
+  flex-basis: 67%;
+}
+@media (min-width: 1024px) {
+  flex-basis: 75%;
+}
+`;
+
+const Quarter = styled(Column)`
+@media (min-width: 769px) {
+  flex-basis: 33%;
+}
+@media (min-width: 1024px) {
+  flex-basis: 25%;
+}
+`;
+
+const Columns = styled.div`
+
+  @media (min-width: 769px) {
+    display: flex;
+    flex-direction: row-reverse;
+
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    margin-top: -0.75rem;
+  }
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background-color: #eeeeee;
+  margin: 0 2rem;
+`;
+
 class ListFaq extends React.Component {
-  render () {
+  render() {
+
+    let currentSnippet = {};
+    let { match } = this.props
+
+    this.props.viewer.allSnippets.edges.map(({node}, i) => {
+      if (match.params.id == node.id) {
+        currentSnippet = node;
+      }
+      else if (i == 0) {
+        currentSnippet = node;
+      }
+    });
+
     return (
-      <Card>
-        <Heading>FAQS</Heading>
-        <Body>
-        {this.props.viewer.allSnippets.edges.map(({node}) =>
-          <Item active={node.id == this.props.match.params.id} key={node.id}>
-            <Link to={'/faqs/' + node.id} >
-              {node.title}
-            </Link>
-          </Item>
-        )}
-        </Body>
-      </Card>
+      <Container>
+        <Columns>
+          <Quarter>
+            <Card>
+              <Heading>FAQS</Heading>
+              <Body>
+                {this.props.viewer.allSnippets.edges.map(({ node }) =>
+                  <Item active={node.id == currentSnippet.id} key={node.id}>
+                    <Link to={'/faqs/' + node.id} >
+                      {node.title}
+                    </Link>
+                  </Item>
+                )}
+              </Body>
+            </Card>
+          </Quarter>
+          <ThreeQuarter>
+            <Card>
+              <HeadingLarge>Frequently Asked Questions</HeadingLarge>
+              <Divider />
+              <SubHeading>{currentSnippet.title}</SubHeading>
+              <Body dangerouslySetInnerHTML={{ __html: currentSnippet.body }} />
+            </Card>
+          </ThreeQuarter>
+        </Columns>
+      </Container>
     )
   }
 }
