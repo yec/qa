@@ -13,8 +13,8 @@ import { Link } from 'react-router-dom';
 
 const Banner = styled.div`
   position: relative;
-  height: 0;
-  padding-bottom: 66.67%;
+  height: 490px;
+  padding-bottom: 0;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -28,14 +28,28 @@ const Banner = styled.div`
     height: 100%;
     left: 0;
     top: 0;
+    background-color: black;
     opacity: 0.2;
   }
 
   @media (min-width: 769px) {
-    height: 490px;
-    padding-bottom: 0%;
+    height: 0;
+    padding-bottom: 56.25%;
   }
 `;
+
+const BannerContent = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
+`
 
 const BannerWrapper = styled.div`
   position: relative;
@@ -53,24 +67,15 @@ const Heading = styled.div`
   @media (min-width: 769px) {
     font-size: 2.5rem;
     padding-top: 2rem;
-
-    &:before {
-      content: "";
-      position: absolute;
-      height: 4px;
-      top: 0px;
-      background-color: rgb(228, 0, 0);
-      width: 40px;
-      border-radius: 4px;
-    }
   }
 `;
 
 const SubHeading = styled.div`
   position: relative;
   font-size: 1.125rem;
-  margin-top: 1rem;
+  margin: 1rem 1rem 0;
   line-height: 1.5;
+  text-align: center;
 `;
 
 const Cta = styled(Link)`
@@ -91,18 +96,7 @@ const Cta = styled(Link)`
 `
 
 const Card = styled.div`
-  background-color: white;
-  color: #323232;
-  padding: 20px;
-
-  @media (min-width: 769px) {
-    border-radius: 0 0 5px 5px;
-    padding: 3rem;
-    width: 40%;
-    top: 0;
-    right: 2rem;
-    position: absolute
-  }
+  color: white;
 `;
 
 const CardBody = styled.div`
@@ -113,17 +107,13 @@ class Page extends React.Component {
     return (
       <div>
 
-      <BannerWrapper>
-        <Banner src={this.props.heroImageUrl}>
-        </Banner>
-        <Card>
-          <CardBody>
-            <Heading>{this.props.heading}</Heading>
-            <SubHeading>{this.props.subHeading}</SubHeading>
-            <Cta to="/faqs">LEARN MORE</Cta>
-          </CardBody>
-        </Card>
-      </BannerWrapper>
+      <Banner src={this.props.heroImageUrl}>
+        <BannerContent>
+          <Heading>{this.props.heading}</Heading>
+          <SubHeading>{this.props.subHeading}</SubHeading>
+          <Cta to="/faqs">LEARN MORE</Cta>
+        </BannerContent>
+      </Banner>
       </div>
     )
   }
