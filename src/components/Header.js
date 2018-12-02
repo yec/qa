@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom';
-// import Menu from 'react-burger-menu/lib/menus/slide'
+import Menu from 'react-burger-menu/lib/menus/slide'
 import HamburgerMenu from 'react-hamburger-menu';
 import {connect} from 'react-redux';
 
@@ -270,48 +270,6 @@ const styles = {
   }
 }
 
-const MenuOverlay = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #555;
-  opacity: 0
-  transition: opacity 0.1s;
-`;
-
-const MenuList = styled.div`
-  position: relative;
-  top: 0;
-  left: 0;
-  background: #323232;
-  width: 80%;
-  max-width: 400px;
-  height: calc(100vh - 60px);
-
-  transform: translate3d(-100%, 0, 0);
-  transition: transform 0.2s;
-`;
-
-const Menu = styled.div`
-  position: fixed;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
-  display: none;
-
-  ${props => props.isOpen && css`
-    display: block;
-
-    ${MenuOverlay} {
-      opacity: 0.4;
-    }
-
-    ${MenuList} {
-      transform: translate3d(0, 0, 0);
-    }
-  `}
-`;
-
 const Header = (props) => {
   return (
     <React.Fragment>
@@ -363,14 +321,13 @@ const Header = (props) => {
       <Spacer />
       <StyleMenu>
         <Menu
-          // onStateChange={state => { props.menuOpen != state.isOpen && props.menuToggle() }}
+          customBurgerIcon={ false }
+          customCrossIcon={ false }
+          onStateChange={state => { props.menuOpen != state.isOpen && props.menuToggle() }}
           isOpen={ props.menuOpen }
           styles={ styles }>
-          <MenuOverlay />
-          <MenuList>
           <Link className="menu-item" to="/">Home</Link>
           <Link className="menu-item" to="/faqs">FAQS</Link>
-          </MenuList>
         </Menu>
       </StyleMenu>
     </React.Fragment>
