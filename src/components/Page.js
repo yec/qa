@@ -128,8 +128,6 @@ export default connect(null, {
       environment={environment}
       query={PageAllPageQuery}
       render={({error, props, ...rest}) => {
-        console.log('rest');
-        console.log(rest);
         if (error) {
           return <div>{error.message}</div>
         } else if (props) {

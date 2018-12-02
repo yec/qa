@@ -11,7 +11,7 @@
     "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
-    "start": "babel-node tools/ssrServer.js",
+    "start": "relay-compiler --src ./src --schema ./schema.graphql && babel-node tools/ssrServer.js",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",

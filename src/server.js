@@ -5,12 +5,8 @@ import Root from './components/Root';
 import { renderToString } from 'react-dom/server'
 import { createRelayEnvironment } from './relayEnvironment'
 import { ServerStyleSheet } from 'styled-components';
-
 import createHistory from 'history/createMemoryHistory';
-// 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { connectRouter, routerMiddleware } from 'connected-react-router';
-
-// redux
 import {createStore, compose, applyMiddleware} from 'redux';
 import rootReducer from './reducers'
 
@@ -29,14 +25,11 @@ app.use(async (req, res, next) => {
 
   history.push(req.url);
 
-  // console.log(req.url);
   const sheet = new ServerStyleSheet();
 
   const environment = createRelayEnvironment()
   renderToString(<Root history={history} store={reduxStore} environment={environment} />)
   const relayData = await environment.relaySSRMiddleware.getCache()
-
-  console.log(relayData[0][1].data);
 
   const source = new RecordSource()
   const store = new Store(source)
