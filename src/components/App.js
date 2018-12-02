@@ -27,8 +27,8 @@ class App extends React.Component {
         <Route component={Header} />
         <Background>
         <Switch>
-          <Route exact path="/" component={Page} />
-          <Route path="/faqs/:id?" component={Faqs} />
+          <Route exact path="/" render={(props) => <Page environment={this.props.environment} {...props} />} />
+          <Route path="/faqs/:id?" render={(props) => <Faqs environment={this.props.environment} {...props} />} />
           <Route component={NotFoundPage} />
         </Switch>
         </Background>

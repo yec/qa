@@ -37,10 +37,9 @@ h2 {
 input.small { width: 46px; }
 td.fuel-savings-label { width: 175px; }
 
-
 @font-face {
   font-family: 'Ciutadella';
-  src: url(https://www.qantasassure.com/dist/static/Ciutadella-Medium-9fb051.woff2) format('woff2');
+  src: url('../fonts/Ciutadella-Medium.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
@@ -48,7 +47,7 @@ td.fuel-savings-label { width: 175px; }
 
 @font-face {
   font-family: 'Ciutadella-Regular';
-  src: url(https://www.qantasassure.com/dist/static/Ciutadella-Regular-b829f6.woff2) format('woff2');
+  src: url('../fonts/Ciutadella-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;

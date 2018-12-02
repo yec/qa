@@ -141,7 +141,7 @@ class ListFaq extends React.Component {
 
     return (
       <Container>
-        <Columns>
+        <Columns className="animated fadeIn">
           <Quarter>
             <Card>
               <Heading>FAQS</Heading>

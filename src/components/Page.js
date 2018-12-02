@@ -6,8 +6,6 @@ import {
 
 import styled from 'styled-components';
 
-import environment from '../Environment'
-
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -92,8 +90,7 @@ class Page extends React.Component {
   render () {
     return (
       <div>
-
-      <Banner src={this.props.heroImageUrl}>
+      <Banner className="animated fadeIn" src={this.props.heroImageUrl}>
         <BannerContent>
           <Heading>{this.props.heading}</Heading>
           <SubHeading>{this.props.subHeading}</SubHeading>
@@ -124,12 +121,15 @@ const PageAllPageQuery = graphql`
 
 export default connect(null, {
   menuClose: () => ({type: 'MENU_CLOSE'})
-})(({menuClose}) => {
+})(({menuClose, environment}) => {
   return (
     <QueryRenderer
+      dataFrom="STORE_THEN_NETWORK"
       environment={environment}
       query={PageAllPageQuery}
-      render={({error, props}) => {
+      render={({error, props, ...rest}) => {
+        console.log('rest');
+        console.log(rest);
         if (error) {
           return <div>{error.message}</div>
         } else if (props) {

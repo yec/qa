@@ -4,7 +4,6 @@ import {
   graphql
 } from 'react-relay';
 
-import environment from '../Environment'
 import ListFaq from './ListFaq';
 
 const FaqsQuery = graphql`
@@ -15,9 +14,10 @@ const FaqsQuery = graphql`
   }
 `;
 
-export default ({match}) => {
+export default ({match, environment}) => {
   return (
     <QueryRenderer
+      dataFrom="STORE_THEN_NETWORK"
       environment={environment}
       query={FaqsQuery}
       render={({error, props}) => {

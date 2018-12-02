@@ -5,11 +5,11 @@ import App from './App';
 
 export default class Root extends Component {
   render() {
-    const { store, history } = this.props;
+    const { store, history, environment } = this.props;
     return (
       <Provider store={store}>
-        <ConnectedRouter onUpdate={(a) => {console.log(a); console.log('router update')}} history={history}>
-          <App />
+        <ConnectedRouter history={history}>
+          <App environment={environment} />
         </ConnectedRouter>
       </Provider>
     );
