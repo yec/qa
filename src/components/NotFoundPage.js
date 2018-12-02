@@ -124,7 +124,7 @@ const L = styled(Link)`
 
 const NotFoundPage = () => {
   return (
-    <Container>
+    <Container className="animated fadeIn">
     <Card>
       <HeadingLarge>404 Page Not Found</HeadingLarge>
       <Divider />
