@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  createFragmentContainer,
-  graphql
-} from 'react-relay';
-
-import styled, { css } from 'styled-components';
-
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
 max-width: 1350px;
@@ -124,62 +118,20 @@ const Divider = styled.div`
   margin: 0 2rem;
 `;
 
-class ListFaq extends React.Component {
-  render() {
+const L = styled(Link)`
+  color: inherit;
+`;
 
-    let currentSnippet = {};
-    let { match } = this.props
+const NotFoundPage = () => {
+  return (
+    <Container>
+    <Card>
+      <HeadingLarge>404 Page Not Found</HeadingLarge>
+      <Divider />
+      <Body><L to="/">Return to homepage</L></Body>
+    </Card>
+    </Container>
+  );
+};
 
-    this.props.viewer.allSnippets.edges.map(({node}, i) => {
-      if (match.params.id == node.id) {
-        currentSnippet = node;
-      }
-      else if (i == 0) {
-        currentSnippet = node;
-      }
-    });
-
-    return (
-      <Container>
-        <Columns>
-          <Quarter>
-            <Card>
-              <Heading>FAQS</Heading>
-              <Body>
-                {this.props.viewer.allSnippets.edges.map(({ node }) =>
-                  <Item active={node.id == currentSnippet.id} key={node.id}>
-                    <Link to={'/faqs/' + node.id} >
-                      {node.title}
-                    </Link>
-                  </Item>
-                )}
-              </Body>
-            </Card>
-          </Quarter>
-          <ThreeQuarter>
-            <Card>
-              <HeadingLarge>Frequently Asked Questions</HeadingLarge>
-              <Divider />
-              <SubHeading>{currentSnippet.title}</SubHeading>
-              <Body dangerouslySetInnerHTML={{ __html: currentSnippet.body }} />
-            </Card>
-          </ThreeQuarter>
-        </Columns>
-      </Container>
-    )
-  }
-}
-
-export default createFragmentContainer(ListFaq, graphql`
-  fragment ListFaq_viewer on Viewer {
-    allSnippets(last: 100, orderBy: id_DESC) @connection(key: "ListFaq_allSnippets", filters: []) {
-      edges {
-        node {
-          id
-          title
-          body
-        }
-      }
-    }
-  }
-`);
+export default NotFoundPage;

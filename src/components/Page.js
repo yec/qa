@@ -1,19 +1,19 @@
 import React from 'react';
 import {
   QueryRenderer,
-  createFragmentContainer,
   graphql
 } from 'react-relay';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import environment from '../Environment'
 
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Banner = styled.div`
   position: relative;
-  height: 490px;
+  height: calc(100vh - 56px);
   padding-bottom: 0;
   width: 100%;
   background-size: cover;
@@ -33,8 +33,7 @@ const Banner = styled.div`
   }
 
   @media (min-width: 769px) {
-    height: 0;
-    padding-bottom: 56.25%;
+    height: calc(100vh - 112px);
   }
 `;
 
@@ -51,22 +50,12 @@ const BannerContent = styled.div`
   justify-content: center;
 `
 
-const BannerWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  display: block;
-`
-
 const Heading = styled.div`
   position: relative;
   font-size: 1.75rem;
 
   @media (min-width: 769px) {
     font-size: 2.5rem;
-    padding-top: 2rem;
   }
 `;
 
@@ -95,14 +84,11 @@ const Cta = styled(Link)`
   }
 `
 
-const Card = styled.div`
-  color: white;
-`;
-
-const CardBody = styled.div`
-`;
-
 class Page extends React.Component {
+  // componentDidUpdate() {
+  //   this.props.menuClose();
+  // }
+
   render () {
     return (
       <div>
@@ -136,7 +122,9 @@ const PageAllPageQuery = graphql`
   }
 `;
 
-export default () => {
+export default connect(null, {
+  menuClose: () => ({type: 'MENU_CLOSE'})
+})(({menuClose}) => {
   return (
     <QueryRenderer
       environment={environment}
@@ -145,10 +133,10 @@ export default () => {
         if (error) {
           return <div>{error.message}</div>
         } else if (props) {
-          return <Page {...props.viewer.allPages.edges.map(({node}) => node).reduce((a, b) => a ? a : b)} />
+          return <Page menuClose={menuClose} {...props.viewer.allPages.edges.map(({node}) => node).reduce((a, b) => a ? a : b)} />
         }
-        return <div>Loading</div>
+        return <div></div>
       }}
     />
   );
-};
+});

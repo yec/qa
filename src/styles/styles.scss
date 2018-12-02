@@ -1,0 +1,59 @@
+/* Variables */
+$vin-blue: #5bb7db;
+$vin-green: #60b044;
+$vin-red: #ff0000;
+
+/* Styles */
+body {
+  font: 16px "Ciutadella-Regular", "Ciutadella Regular", "BrauerNeueRegular", "flama_condensedbasic", "Helvetica Neue", "Helvetica", "Arial";
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+.bm-item {
+  font-family: "Ciutadella";
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+td {
+	padding: 12px;
+}
+
+h2 {
+	color: $vin-blue;
+}
+
+.savings { color: $vin-green; }
+.loss { color: $vin-red; }
+input.small { width: 46px; }
+td.fuel-savings-label { width: 175px; }
+
+
+@font-face {
+  font-family: 'Ciutadella';
+  src: url(https://www.qantasassure.com/dist/static/Ciutadella-Medium-9fb051.woff2) format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Ciutadella-Regular';
+  src: url(https://www.qantasassure.com/dist/static/Ciutadella-Regular-b829f6.woff2) format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+// <link rel="preload" href="https://www.qantasassure.com/dist/static/assure-health-5ed75a.woff" as="font" type="font/woff" crossOrigin="anonymous"/>
+// <link rel="preload" href="https://www.qantasassure.com/dist/static/Ciutadella-Regular-b829f6.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
+// <link rel="preload" href="https://www.qantasassure.com/dist/static/Ciutadella-Medium-9fb051.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>

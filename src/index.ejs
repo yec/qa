@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  **NOTE:** This is a template for index.html. It uses ejs and htmlWebpackPlugin to generate a different index.html for each environment. htmlWebpackPlugin will dynamically add references to the scripts and styles that it bundles to this file. The generated bundles have hash-based filenames, so it's necessary to add the references dynamically.
+  For more info on ejs, see http://www.embeddedjs.com/. For examples of using it with htmlWebpackPlugin, see https://github.com/jaketrent/html-webpack-template/blob/master/index.ejs
+  -->
+<head>
+  <!--
+    The htmlWebpackPlugin will parse the logic below so that trackJS is only added to the production version of index.html (since only webpack.config.prod.js provides the trackJS token)
+    This is an example of how to add features to index.html for only one environment.
+    To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token in /webpack.config.prod.js on line 55.
+   -->
+  <% if (htmlWebpackPlugin.options.trackJSToken) { %>
+  <script>window._trackJs = {token: '<%= htmlWebpackPlugin.options.trackJSToken %>'};</script>
+  <script src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>
+  <% } %>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8"/>
+
+  <link rel="preload" href="https://www.qantasassure.com/dist/static/assure-health-5ed75a.woff" as="font" type="font/woff" crossOrigin="anonymous"/>
+  <link rel="preload" href="https://www.qantasassure.com/dist/static/Ciutadella-Regular-b829f6.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
+  <link rel="preload" href="https://www.qantasassure.com/dist/static/Ciutadella-Medium-9fb051.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
+  <link rel="mask-icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iMjYwLjAwMDAwMHB0IiBoZWlnaHQ9IjI2MC4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDI2MC4wMDAwMDAgMjYwLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgo8bWV0YWRhdGE+CkNyZWF0ZWQgYnkgcG90cmFjZSAxLjExLCB3cml0dGVuIGJ5IFBldGVyIFNlbGluZ2VyIDIwMDEtMjAxMwo8L21ldGFkYXRhPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwyNjAuMDAwMDAwKSBzY2FsZSgwLjEwMDAwMCwtMC4xMDAwMDApIgpmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiPgo8cGF0aCBkPSJNMTAgMjIxNCBjMSAtMjQgMTAzIC0yMTYgMTM5IC0yNjEgNDcgLTU5IDE0OSAtMTMxIDIzMSAtMTYzIDMwIC0xMgoxMjAgLTQ0IDE5OSAtNzEgMjM3IC04MiAzNzEgLTE1NSA1MzYgLTI5MiA4MSAtNjggMTEyIC04MCAxMzYgLTUxIDEwIDEyIDEwCjIyIDEgNDggLTE5IDUyIC0xNyA1NyAyNiA0MiA5NiAtMzQgMjMyIC0xMTggMjMyIC0xNDIgMCAtMjUgLTQ4IC00NSAtMTg0IC03NAotMTQ3IC0zMSAtMjEwIC01OSAtMjMyIC0xMDIgLTM2IC02OSAtMSAtMTIwIDEwOCAtMTYzIDE1NCAtNTkgMzMzIC0xNjAgNDU4Ci0yNTggOTEgLTcxIDIyMCAtMTg4IDIyMCAtMTk5IDAgLTE1IC0xOSAtNSAtMTA0IDU2IC0yMDIgMTQ1IC00NjAgMjU2IC03MDgKMzA2IC0xMDkgMjEgLTEyOCAzMyAtMTI4IDgwIDAgODYgLTYzIDIzNSAtMTM5IDMyOSAtNjcgODQgLTEzMSAxMzggLTMyMSAyNjgKLTk5IDY4IC0xODcgMTM5IC0yNDIgMTk0IGwtODYgODYgMTkgLTUxIGMxMSAtMjggMTM1IC0zNTUgMjc3IC03MjYgbDI1OCAtNjc1Cjk0NCAtMiA5NDUgLTMgLTc5NSA3OTQgYy04NjIgODYwIC04NjYgODY0IC0xMDU4IDk0NiAtMTY0IDcxIC0yMjggODIgLTQ5NCA4NwotMTMxIDMgLTIzOCAxIC0yMzggLTN6Ii8+CjwvZz4KPC9zdmc+Cg==" color="#e40000"/><link rel="icon" type="image/png" sizes="16x16" href="https://www.qantasassure.com/dist/static/favicon-16x16.png"/><link rel="icon" type="image/png" sizes="32x32" href="https://www.qantasassure.com/dist/static/favicon-32x32.png"/><link rel="shortcut icon" type="image/x-icon" href="https://www.qantasassure.com/dist/static/favicon.ico"/>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/tachyons@4.2.1/css/tachyons.min.css"/> -->
+  <title>Qantas Insurance</title>
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>

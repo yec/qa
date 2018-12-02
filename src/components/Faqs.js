@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   QueryRenderer,
-  createFragmentContainer,
   graphql
 } from 'react-relay';
 
@@ -25,9 +24,9 @@ export default ({match}) => {
         if (error) {
           return <div>{error.message}</div>
         } else if (props) {
-          return <ListFaq viewer={props.viewer} />
+          return <ListFaq match={match} viewer={props.viewer} />
         }
-        return <div>Loading</div>
+        return <div></div>
       }}
     />
   );

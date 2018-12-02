@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   @media (min-width: 769px) {
     margin-top: 40px;
     height: 72px;
-    box-shadow: inset 0 -1px 0 0 #eeeeee;
+    // box-shadow: inset 0 -1px 0 0 #eeeeee;
   }
 
   &:after {
@@ -54,6 +54,10 @@ const Level = styled.div`
   justify-content: space-between;
   max-width: 1200px;
   width: 100%;
+  @media (min-width: 769px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const Picture = styled.picture`
@@ -77,7 +81,7 @@ const Image = styled.img`
 const Primary = styled.ul`
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 1201;
   background-color: white;
   width: 100%;
   height: 40px;
@@ -177,7 +181,7 @@ const Login = styled.button`
   border: none;
   background: inherit;
 
-  padding-right: 20px;
+  padding: 0;
 
   svg {
     padding-right: 20px;
@@ -279,17 +283,49 @@ const MenuOverlay = styled.div`
   transition: opacity 0.1s;
 `;
 
-const MenuList = styled.div`
+const MenuList = styled.ul`
   position: relative;
   top: 0;
   left: 0;
   background: #323232;
   width: 80%;
-  max-width: 400px;
+  max-width: 500px;
   height: calc(100vh - 60px);
+  padding: 4px 0 0 0;
+  margin: 0;
 
   transform: translate3d(-100%, 0, 0);
-  transition: transform 0.2s;
+  transition: transform 0.3s;
+
+`;
+
+const MenuItem = styled.li`
+  padding: 1rem;
+  border-bottom: 1px solid #555;
+  color: white;
+  position: relative;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-family: "Ciutadella";
+    font-size: 1.125rem;
+  }
+
+  ${props => props.isActive && css`
+    background-color: white;
+    color: #555;
+
+    &:before {
+      top: 0;
+      left: 0;
+      content: '';
+      position: absolute;
+      background-color: #8de2e0;
+      width: 6px;
+      height: 100%;
+    }
+  `}
 `;
 
 const Menu = styled.div`
@@ -343,8 +379,8 @@ const Header = (props) => {
         <HamburgerMenu
           isOpen={props.menuOpen}
           menuClicked={props.menuToggle}
-          width={18}
-          height={15}
+          width={22}
+          height={13}
           strokeWidth={2}
           rotate={0}
           color='black'
@@ -363,13 +399,16 @@ const Header = (props) => {
       <Spacer />
       <StyleMenu>
         <Menu
-          // onStateChange={state => { props.menuOpen != state.isOpen && props.menuToggle() }}
           isOpen={ props.menuOpen }
           styles={ styles }>
-          <MenuOverlay />
+          <MenuOverlay onClick={ props.menuToggle } />
           <MenuList>
-          <Link className="menu-item" to="/">Home</Link>
-          <Link className="menu-item" to="/faqs">FAQS</Link>
+            <MenuItem isActive={props.location.pathname == '/'}>
+              <Link className="menu-item" to="/">Home</Link>
+            </MenuItem>
+            <MenuItem isActive={props.location.pathname.indexOf('/faqs') === 0}>
+              <Link className="menu-item" to="/faqs">Faqs</Link>
+            </MenuItem>
           </MenuList>
         </Menu>
       </StyleMenu>

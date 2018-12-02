@@ -6,6 +6,9 @@ const {
   QueryResponseCache,
 } = require('relay-runtime')
 
+import configureStore from './store/configureStore';
+
+const reduxStore = configureStore();
 const store = new Store(new RecordSource())
 const __RELAY_API_ENDPOINT__ = 'https://api.graph.cool/relay/v1/cjp4o1t9ln3kh0198j7x9kk84';
 const cache = new QueryResponseCache({size: 100, ttl: 100000});
@@ -21,6 +24,7 @@ const network = Network.create((operation, variables, cacheConfig, uploadables) 
   const forceLoad = cacheConfig && cacheConfig.force
 
   if (!forceLoad && cachedData) {
+    reduxStore.dispatch({ type: 'MENU_CLOSE'})
     return cachedData;
   }
 
@@ -44,6 +48,7 @@ const network = Network.create((operation, variables, cacheConfig, uploadables) 
     const data = response.json();
     // A cache key, queryId in this code, should be unique per query.
     cache.set(queryId, variables, data);
+    reduxStore.dispatch({ type: 'MENU_CLOSE'})
     return data  })
 })
 
